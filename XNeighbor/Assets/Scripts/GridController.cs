@@ -5,8 +5,13 @@ using UnityEngine;
 public class GridController : MonoBehaviour
 {
     public static GridController Instance;
+
     public List<List<GridItem>> GridItemsList = new List<List<GridItem>>();
-    public List<GridItem> controlList = new List<GridItem>();
+
+    [SerializeField] public List<GridItem> controlList = new List<GridItem>();
+
+    [SerializeField] private CheckNeighborItem checkNeighborItem;
+    [SerializeField] private GetNeighborItem getNeighborItem;
 
     private void Awake()
     {
@@ -22,7 +27,7 @@ public class GridController : MonoBehaviour
 
     public void ExecuteClickedGridItem(int yIndex, int xIndex)
     {
-        controlList.Clear();
+        ClearControlList();
 
         //Tiklanan itemi listeye al.
         AddGridItemToControlList(GridItemsList[yIndex][xIndex]);
@@ -40,93 +45,57 @@ public class GridController : MonoBehaviour
         int i = 0;
         do
         {
-            FindLeftNeighbor(controlList[i].Indexes.GetYIndex(), controlList[i].Indexes.GetXIndex());
-            FindRightNeighbor(controlList[i].Indexes.GetYIndex(), controlList[i].Indexes.GetXIndex());
-            FindTopNeighbor(controlList[i].Indexes.GetYIndex(), controlList[i].Indexes.GetXIndex());
-            FindBottomNeighbor(controlList[i].Indexes.GetYIndex(), controlList[i].Indexes.GetXIndex());
+            FindAndAddLeftNeighbor(controlList[i].Indexes.GetYIndex(), controlList[i].Indexes.GetXIndex());
+            FindAndAddRightNeighbor(controlList[i].Indexes.GetYIndex(), controlList[i].Indexes.GetXIndex());
+            FindAndAddTopNeighbor(controlList[i].Indexes.GetYIndex(), controlList[i].Indexes.GetXIndex());
+            FindAndAddBottomNeighbor(controlList[i].Indexes.GetYIndex(), controlList[i].Indexes.GetXIndex());
             i++;
         } while (i < controlList.Count);
     }
 
-    #region RecursiveNeighborFinder
+    #region CreateControlList
     //Gonderilen itemin solundaki itemi kontrol et, item varsa ve secilmis ise listeye al.
-    private void FindLeftNeighbor(int yIndex, int xIndex)
+    private void FindAndAddLeftNeighbor(int yIndex, int xIndex)
     {
-        if (IsLeftIndexExists(xIndex) && GetLeftNeighborGridItem(yIndex, xIndex).IsSelected())
-        {
-            AddGridItemToControlList(GetLeftNeighborGridItem(yIndex, xIndex));
-        }
+        if (!checkNeighborItem.IsLeftIndexExists(xIndex))
+            return;
+
+        GridItem selectedGridItem = getNeighborItem.GetLeftNeighborGridItem(GridItemsList, yIndex, xIndex);
+        if (selectedGridItem.IsSelected())
+            AddGridItemToControlList(selectedGridItem);
     }
 
     //Gonderilen itemin sagindaki itemi kontrol et, item varsa ve secilmis ise listeye al.
-    private void FindRightNeighbor(int yIndex, int xIndex)
+    private void FindAndAddRightNeighbor(int yIndex, int xIndex)
     {
-        if (IsRightIndexExists(xIndex) && GetRightNeighborGridItem(yIndex, xIndex).IsSelected())
-        {
-            AddGridItemToControlList(GetRightNeighborGridItem(yIndex, xIndex));
-        }
+        if (!checkNeighborItem.IsRightIndexExists(xIndex, GridItemsList))
+            return;
+
+        GridItem selectedGridItem = getNeighborItem.GetRightNeighborGridItem(GridItemsList, yIndex, xIndex);
+        if (selectedGridItem.IsSelected())
+            AddGridItemToControlList(selectedGridItem);
     }
 
     //Gonderilen itemin uzerindeki itemi kontrol et, item varsa ve secilmis ise listeye al.
-    private void FindTopNeighbor(int yIndex, int xIndex)
+    private void FindAndAddTopNeighbor(int yIndex, int xIndex)
     {
-        if (IsTopIndexExists(yIndex) && GetTopNeighborGridItem(yIndex, xIndex).IsSelected())
-        {
-            AddGridItemToControlList(GetTopNeighborGridItem(yIndex, xIndex));
-        }
+        if (!checkNeighborItem.IsTopIndexExists(yIndex))
+            return;
+
+        GridItem selectedGridItem = getNeighborItem.GetTopNeighborGridItem(GridItemsList, yIndex, xIndex);
+        if (selectedGridItem.IsSelected())
+            AddGridItemToControlList(selectedGridItem);
     }
 
     //Gonderilen itemin altindaki itemi kontrol et, item varsa ve secilmis ise listeye al.
-    private void FindBottomNeighbor(int yIndex, int xIndex)
+    private void FindAndAddBottomNeighbor(int yIndex, int xIndex)
     {
-        if (IsBottomIndexExists(yIndex) && GetBottomNeighborGridItem(yIndex, xIndex).IsSelected())
-        {
-            AddGridItemToControlList(GetBottomNeighborGridItem(yIndex, xIndex));
-        }
-    }
-    #endregion
+        if (!checkNeighborItem.IsBottomIndexExists(yIndex, GridItemsList))
+            return;
 
-    #region CheckNeighborIndexes
-    private bool IsLeftIndexExists(int xIndex)
-    {
-        return xIndex >= 1;
-    }
-
-    private bool IsRightIndexExists(int xIndex)
-    {
-        return GridItemsList[0].Count - 1 > xIndex;
-    }
-
-    public bool IsTopIndexExists(int yIndex)
-    {
-        return yIndex >= 1;
-    }
-
-    public bool IsBottomIndexExists(int yIndex)
-    {
-        return GridItemsList[0].Count - 1 > yIndex;
-    }
-    #endregion
-
-    #region GetNeighborGridItem
-    private GridItem GetRightNeighborGridItem(int yIndex, int xIndex)
-    {
-        return GridItemsList[yIndex][xIndex + 1];
-    }
-
-    private GridItem GetLeftNeighborGridItem(int yIndex, int xIndex)
-    {
-        return GridItemsList[yIndex][xIndex - 1];
-    }
-
-    private GridItem GetTopNeighborGridItem(int yIndex, int xIndex)
-    {
-        return GridItemsList[yIndex - 1][xIndex];
-    }
-
-    private GridItem GetBottomNeighborGridItem(int yIndex, int xIndex)
-    {
-        return GridItemsList[yIndex + 1][xIndex];
+        GridItem selectedGridItem = getNeighborItem.GetBottomNeighborGridItem(GridItemsList, yIndex, xIndex);
+        if (selectedGridItem.IsSelected())
+            AddGridItemToControlList(selectedGridItem);
     }
     #endregion
 
@@ -144,9 +113,13 @@ public class GridController : MonoBehaviour
     private void ReleaseTempList()
     {
         foreach (var item in controlList)
-        {
             item.ReleaseGridItem();
-        }
+
+        ClearControlList();
+    }
+
+    private void ClearControlList()
+    {
         controlList.Clear();
     }
 

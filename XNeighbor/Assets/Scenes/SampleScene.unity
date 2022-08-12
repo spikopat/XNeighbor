@@ -366,6 +366,8 @@ GameObject:
   m_Component:
   - component: {fileID: 765439915}
   - component: {fileID: 765439916}
+  - component: {fileID: 765439917}
+  - component: {fileID: 765439918}
   m_Layer: 0
   m_Name: GridController
   m_TagString: Untagged
@@ -401,6 +403,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlList: []
+  checkNeighborItem: {fileID: 765439917}
+  getNeighborItem: {fileID: 765439918}
+--- !u!114 &765439917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765439914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae880b0f143901140b9181f0055a4b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &765439918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765439914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76caa42027045d94f83945385e795da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963813695
 GameObject:
   m_ObjectHideFlags: 0
