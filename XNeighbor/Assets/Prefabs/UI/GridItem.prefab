@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6404328089083290246}
   - component: {fileID: 8521175858201998920}
   - component: {fileID: 2129563950676702084}
+  - component: {fileID: 3986750178686731870}
   m_Layer: 5
   m_Name: GridItemText
   m_TagString: Untagged
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 100
   m_fontSizeMax: 500
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -135,6 +136,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3986750178686731870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466909130828060683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a3ec44409dc42341bb99ddf0740cac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6192581244170032328
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8344013, g: 0.9245283, b: 0.9176708, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -253,7 +266,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.79174083, g: 0.8418654, b: 0.9056604, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -299,8 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93711b20c3d4c2543ad04dabe14b08af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Indexes: {x: 0, y: 0}
   GridItemUI: {fileID: 5586025283871699016}
+  isSelected: 0
 --- !u!114 &5586025283871699016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,4 +326,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a54d2f363c1a3e449a85b1a29bea02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridItemText: {fileID: 2129563950676702084}
+  GridItemTextEffect: {fileID: 3986750178686731870}

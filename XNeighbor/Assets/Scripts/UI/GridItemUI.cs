@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class GridItemUI : MonoBehaviour
 {
-    public TextMeshProUGUI GridItemText;
+    [SerializeField] private GridItemTextEffect GridItemTextEffect;
 
     public void ToggleXText(bool value)
     {
-        GridItemText.gameObject.SetActive(value);
+        if (value)
+            GridItemTextEffect.gameObject.SetActive(true);
+        else
+            GridItemTextEffect.EndingSequence();
     }
 
 }
