@@ -32,19 +32,28 @@ public class GridGenerator : MonoBehaviour
         gridLayout.cellSize = new Vector2(_areaAmountPerGridItem * 0.9f, _areaAmountPerGridItem * 0.9f);
         gridLayout.spacing = new Vector2(_areaAmountPerGridItem * 0.05f, _areaAmountPerGridItem * 0.05f);
         gridLayout.padding = new RectOffset(
-            Convert.ToInt32(_areaAmountPerGridItem * 0.05f),
-            Convert.ToInt32(_areaAmountPerGridItem * 0.05f),
-            Convert.ToInt32(_areaAmountPerGridItem * 0.1f),
-            Convert.ToInt32(_areaAmountPerGridItem * 0.1f)
+            (int)(_areaAmountPerGridItem * 0.05f),
+            (int)(_areaAmountPerGridItem * 0.05f),
+            (int)(_areaAmountPerGridItem * 0.1f),
+            (int)(_areaAmountPerGridItem * 0.1f)
             );
 
     }
 
     private void CreateGrid()
     {
-        for (int i = 0; i < gridSize * gridSize; i++)
+        for (int i = 0; i < gridSize ; i++)
         {
-            GridItem gridItem = Instantiate(gridItemObject, gridLayout.transform).GetComponent<GridItem>();
+            List<GridItem> items = new List<GridItem>();
+            for (int j = 0; j < gridSize; j++)
+            {
+                GridItem gridItem = Instantiate(gridItemObject, gridLayout.transform).GetComponent<GridItem>();
+                gridItem.gameObject.name += "[" + i + "]" + "[" + j + "]";
+                gridItem.SetGridItemIndexes(i, j);
+                items.Add(gridItem);
+                
+            }
+            GridController.Instance.GridItemsList.Add(items);
         }
     }
 

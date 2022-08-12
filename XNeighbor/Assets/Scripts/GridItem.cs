@@ -1,12 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class GridItem : MonoBehaviour
 {
+    public struct IndexStruct
+    {
+        public int XIndex;
+        public int YIndex;
 
-    public TextMeshProUGUI GridItemText;
+        public void SetIndexes(int xValue, int yValue)
+        {
+            XIndex = xValue;
+            YIndex = yValue;
+        }
+
+        public int GetXIndex()
+        {
+            return XIndex;
+        }
+
+        public int GetYIndex()
+        {
+            return YIndex;
+        }
+    }
+
+    [HideInInspector] public IndexStruct Indexes;
+    [SerializeField] public GridItemUI GridItemUI;
 
     private void Start()
     {
@@ -14,9 +36,16 @@ public class GridItem : MonoBehaviour
 
     }
 
-    public void ToggleXText(bool value)
+    //Called by button
+    public void OnClickGridItem()
     {
-        GridItemText.gameObject.SetActive(value);
+        GridItemUI.ToggleXText(true);
+        GridController.Instance.GetClickedGridItemCoordinates(Indexes.GetXIndex(), Indexes.GetYIndex());
+    }
+
+    public void SetGridItemIndexes(int xIndex, int yIndex)
+    {
+        Indexes.SetIndexes(xIndex, yIndex);
     }
 
 }

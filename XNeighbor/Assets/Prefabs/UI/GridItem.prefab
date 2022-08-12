@@ -147,8 +147,9 @@ GameObject:
   - component: {fileID: 6192581244170032331}
   - component: {fileID: 6192581244170032333}
   - component: {fileID: 6192581244170032332}
-  - component: {fileID: 8561747777915796515}
   - component: {fileID: 3691455255518875076}
+  - component: {fileID: 8561747777915796515}
+  - component: {fileID: 5586025283871699016}
   m_Layer: 5
   m_Name: GridItem
   m_TagString: Untagged
@@ -230,19 +231,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 20
---- !u!114 &8561747777915796515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6192581244170032328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93711b20c3d4c2543ad04dabe14b08af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GridItemText: {fileID: 2129563950676702084}
 --- !u!114 &3691455255518875076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,8 +277,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8561747777915796515}
         m_TargetAssemblyTypeName: GridItem, Assembly-CSharp
-        m_MethodName: ToggleXText
-        m_Mode: 6
+        m_MethodName: OnClickGridItem
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -299,3 +287,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &8561747777915796515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192581244170032328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93711b20c3d4c2543ad04dabe14b08af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Indexes: {x: 0, y: 0}
+  GridItemUI: {fileID: 5586025283871699016}
+--- !u!114 &5586025283871699016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192581244170032328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a54d2f363c1a3e449a85b1a29bea02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridItemText: {fileID: 2129563950676702084}
