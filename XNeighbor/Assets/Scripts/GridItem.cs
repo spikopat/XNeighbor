@@ -1,19 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GridItem : MonoBehaviour
 {
     public struct IndexStruct
     {
-        public int XIndex;
         public int YIndex;
+        public int XIndex;
 
-        public void SetIndexes(int xValue, int yValue)
+        public void SetIndexes(int yValue, int xValue)
         {
-            XIndex = xValue;
             YIndex = yValue;
+            XIndex = xValue;
         }
 
         public int GetXIndex()
@@ -29,6 +31,7 @@ public class GridItem : MonoBehaviour
 
     [HideInInspector] public IndexStruct Indexes;
     [SerializeField] public GridItemUI GridItemUI;
+    [SerializeField] private bool isSelected;
 
     private void Start()
     {
@@ -39,13 +42,26 @@ public class GridItem : MonoBehaviour
     //Called by button
     public void OnClickGridItem()
     {
+        isSelected = true;
         GridItemUI.ToggleXText(true);
-        GridController.Instance.GetClickedGridItemCoordinates(Indexes.GetXIndex(), Indexes.GetYIndex());
+
+        GridController.Instance.ExecuteClickedGridItem(Indexes.GetYIndex(), Indexes.GetXIndex());
     }
 
-    public void SetGridItemIndexes(int xIndex, int yIndex)
+    public void SetGridItemIndexes(int yIndex, int xIndex)
     {
-        Indexes.SetIndexes(xIndex, yIndex);
+        Indexes.SetIndexes(yIndex, xIndex);
+    }
+
+    public void ReleaseGridItem()
+    {
+        GridItemUI.ToggleXText(false);
+        isSelected = false;
+    }
+
+    public bool IsSelected()
+    {
+        return isSelected;
     }
 
 }

@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c46b229245316945837b4a27b420cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridItems: []
+  controlList: []
 --- !u!1 &963813695
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,8 +479,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1179443066}
   - component: {fileID: 1179443065}
+  - component: {fileID: 1179443067}
   m_Layer: 0
-  m_Name: GridGenerator
+  m_Name: GridCreator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,6 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e25ea3d6e3bc4349ab376a322da0680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GridSettings: {fileID: 1179443067}
   gridSize: 5
   gridLayout: {fileID: 1343016224}
   gridItemObject: {fileID: 6192581244170032328, guid: 8685fe69e36c55f4d86e698b073d9bbd,
@@ -517,6 +519,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1179443067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179443064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4940cd8e07a7a154584f9cf837d24949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1343016222
 GameObject:
   m_ObjectHideFlags: 0
