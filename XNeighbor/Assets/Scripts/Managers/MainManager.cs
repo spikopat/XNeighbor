@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainManager : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class MainManager : MonoBehaviour
     {
 
         Application.targetFrameRate = 30;
+    }
+
+    //Called by button
+    public void OnClickRestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }

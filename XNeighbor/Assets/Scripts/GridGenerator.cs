@@ -7,24 +7,34 @@ using UnityEngine.UI;
 public class GridGenerator : MonoBehaviour
 {
     public GridSettings GridSettings;
+    public Slider GridSizeSlider;
 
-    [Header("Grid boyutu. N x N")]
-    [SerializeField, Range(2, 10)] private int gridSize = 2;
     [SerializeField] private GridLayoutGroup gridLayout;
     [SerializeField] private GameObject gridItemObject;
 
     private void Start()
     {
-        GridSettings.SetGridSettings(gridLayout, gridSize);
+        
+    }
+
+    //Called by button
+    public void OnClickGenerateButton()
+    {
+        SetGridSettings();
         CreateGrid();
+    }
+
+    private void SetGridSettings()
+    {
+        GridSettings.SetGridSettings(gridLayout, (int)GridSizeSlider.value);
     }
 
     private void CreateGrid()
     {
-        for (int i = 0; i < gridSize; i++)
+        for (int i = 0; i < (int)GridSizeSlider.value; i++)
         {
             List<GridItem> items = new List<GridItem>();
-            for (int j = 0; j < gridSize; j++)
+            for (int j = 0; j < (int)GridSizeSlider.value; j++)
             {
                 GridItem gridItem = Instantiate(gridItemObject, gridLayout.transform).GetComponent<GridItem>();
                 gridItem.gameObject.name += "[" + i + "]" + "[" + j + "]";

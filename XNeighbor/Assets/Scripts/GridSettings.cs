@@ -22,10 +22,11 @@ public class GridSettings : MonoBehaviour
         gridLayoutGroup.padding = new RectOffset(
             (int)(_areaAmountPerGridItem * 0.05f),
             (int)(_areaAmountPerGridItem * 0.05f),
-            (int)(_areaAmountPerGridItem * 0.1f),
-            (int)(_areaAmountPerGridItem * 0.1f)
+            (int)(_areaAmountPerGridItem * 0.25f),
+            (int)(_areaAmountPerGridItem * 0.25f)
         );
 
+        gridLayoutGroup.constraintCount = gridSize;
     }
 
 }
